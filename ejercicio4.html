@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lista de productos</title>
+</head>
+<body>
+    <input type="text" id="producto" placeholder="Ingrese algo">
+    <button id="agregar">Agregar</button>
+    <ul id="lista"></ul>
+
+    <script>
+        const input = document.getElementById("producto");
+        const boton = document.getElementById("agregar");
+        const lista = document.getElementById("lista");
+
+        boton.addEventListener("click", () => {
+            const texto = input.value.trim();
+            if (texto === '') {
+                alert("Por favor, ingrese un producto.");
+                return;
+            }
+            const li = document.createElement("li");
+            li.textContent = texto;
+            lista.appendChild(li);
+            input.value = "";
+            input.focus();
+        });
+    </script>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            place-items: center;
+            min-height: 90vh;
+        }
+
+        main{
+            padding: 30px;
+            border-radius: 18px;
+            width: 300px
+        }
+
+        h2{color: #202938;}
+
+        input {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 9px;
+            width: 92%;
+            outline-color: #6333f1;
+        }
+
+        button{
+            margin-top: 12px;
+            padding: 12px;
+            width: 100%;
+            background: #6366f1;
+            color: white;
+            border:none;
+            border-radius: 9px;
+            cursor:pointer;
+            font-weight: bold;
+        }
+
+        button:hover{
+            background: #4f46e5;
+        }
+
+        li{
+            padding: 10px;
+            margin-top: 10 px;
+            background: #f4f6fb;
+            border-radius: 8px;
+            color
+            : #374151;
+        }
+        
+        
+     </style>
+</body>
+</html>

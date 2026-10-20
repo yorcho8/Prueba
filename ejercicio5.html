@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lista de productos</title>
+</head>
+<body>
+    <h1>Usuarios</h1>
+    <p id="mensaje"></p>
+    <ul id="lista"></ul>
+
+    <script>
+        const mensaje = document.getElementById('mensaje');
+        const lista = document.getElementById('lista');
+
+        async function cargarUsuarios(){
+            mensaje.textContent = "Cargando usuarios...";
+            try {
+                const respuesta = await fetch('https://jsonplaceholder.typicode.com/users');
+                if (!respuesta.ok) {
+                    throw new Error('Error al cargar los usuarios');
+                }
+                const usuarios = await respuesta.json();
+                mensaje.textContent = "";
+                usuarios.forEach(usuario => {
+                    const li = document.createElement("li");
+                    li.textContent = usuario.name;
+                    lista.appendChild(li);
+                });
+            } catch (error) {
+                mensaje.textContent = "Error al cargar los usuarios.";
+                console.error("Error:", error);
+            }
+        }
+
+        cargarUsuarios();
+    </script>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background: #f4f6fb;
+            display: grid;
+            place-items: center;
+            min-height: 90vh;
+            margin: none;
+        }
+
+        main{
+            background:white;
+            padding:30px;
+            border-radius: 18px;
+            width: 320px;
+            max-width: 80%;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        h1{
+            color: #202938;
+            font-size: 26px;
+        }
+        #mensaje{
+            color: #6366f1;
+            font-size: 14px;
+        }
+        ul{
+            padding: 0;
+            list-style: none;
+        }
+
+        li{
+            padding: 12px;
+            margin-top: 8px;
+            background: #f4f6fb;
+            border-radius: 9px;
+            color: #374151;
+            transition: background 0.2s;
+        }
+
+        li:hover{
+            background: #e0e7ff;
+        }
+    </style>
+
+</body>
+</html>
